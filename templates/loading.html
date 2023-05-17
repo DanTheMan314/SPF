@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Home Search Page Template">
+    <meta name="author" content="Ashwin Leon Mathews">
+    <meta name="keywords" content="SPF">
+
+    <!-- Title Page-->
+    <title>SPF Loading Page</title>
+
+    <!-- Title Page Icon-->
+    <link rel="icon" type="image/png" href="/static/logo-blue.png">
+
+    <!-- Main CSS-->
+    <link href="/static/home.css" rel="stylesheet" media="all" type="text/css">
+</head>
+
+<body>
+    <!-- Comment Display ps-->
+    <script>
+        let all_comments = {{ comment | tojson}}, all_sentiments = {{ sentiment | tojson}}, all_offences = {{ offend | tojson}}, all_relevance = {{ relevant | tojson}};
+        for (let i = 0; i < all_comments.length; i++) {
+            console.log(all_comments[i][0]);
+            document.writeln("<h5><b>" + all_comments[i][0] + "</b></h5>");
+            document.writeln("<h5><b>" + all_sentiments[i][0] + "</b></h5>")
+            document.writeln("<h5><b>Offensive: " + all_offences[i][0] + "</b></h5>")
+            document.writeln("<h5><b>Relevant: " + all_relevance[i][0] + "</b></h5>")
+            if (all_comments[i][1].length > 0) {
+                console.log("There are " + all_comments[i][1].length + " replies");
+                document.writeln("<p>&ensp;There are " + all_comments[i][1].length + " replies</p>");
+                console.log("\tReplies:");
+                document.writeln("<p>&ensp;Replies:</p>");
+                for (let j = 0; j < all_comments[i][1].length; j++) {
+                    console.log("\t\t" + all_comments[i][1][j]);
+                    document.writeln("<p>&emsp;" + all_comments[i][1][j] + "</p><br />");   
+                    document.writeln("<p>&emsp;" + all_sentiments[i][1][j] + "</p><br />");   
+                    document.writeln("<h5><b>Offensive: " + all_offences[i][1][j] + "</b></h5>")
+                    document.writeln("<h5><b>Relevant: " + all_relevance[i][1][j] + "</b></h5>")
+                }
+            }
+            document.writeln("<br /><br />");
+        }   
+    </script>
+</body>
+
+</html>
+<!-- end document-->
